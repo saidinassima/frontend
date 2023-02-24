@@ -1,8 +1,10 @@
-export const getfilterThemeNewsService = async (theme) => {
+export const getFilterThemeNewsService = async (theme, token) => {
   const response = await fetch(
     `${process.env.REACT_APP_BACKEND}/listNews?theme=${theme}`,
     {
-      method: "GET",
+      headers: {
+        Authorization: token,
+      },
     }
   );
 
@@ -15,8 +17,12 @@ export const getfilterThemeNewsService = async (theme) => {
   return json.data;
 };
 
-export const getAllNewsService = async () => {
-  const response = await fetch(`${process.env.REACT_APP_BACKEND}/listNews`);
+export const getAllNewsService = async (token) => {
+  const response = await fetch(`${process.env.REACT_APP_BACKEND}/listNews`, {
+    headers: {
+      Authorization: token,
+    },
+  });
 
   const json = await response.json();
 
@@ -146,12 +152,12 @@ export const deleteNewsService = async ({ id, token }) => {
   }
 };
 
-export const AnadirPhotoService = async ({ id, photo, token }) => {
+export const addPhotoService = async ({ id, data, token }) => {
   const response = await fetch(
-    `${process.env.REACT_APP_BACKEND}/News/${id}/${photo}`,
+    `${process.env.REACT_APP_BACKEND}/News/${id}/photo`,
     {
       method: "POST",
-      body: photo,
+      body: data,
       headers: {
         Authorization: token,
       },
@@ -166,7 +172,7 @@ export const AnadirPhotoService = async ({ id, photo, token }) => {
 
   return json.data;
 };
-export const LikeService = async ({ id, token }) => {
+export const likeService = async ({ id, token }) => {
   const response = await fetch(
     `${process.env.REACT_APP_BACKEND}/News/${id}/like`,
     {

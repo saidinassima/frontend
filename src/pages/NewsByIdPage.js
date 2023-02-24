@@ -1,14 +1,12 @@
 import { NavLink } from "react-router-dom";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { getSingleNewsService } from "../services";
-import { AuthContext } from "../context/AuthContext";
 import useNew from "../hooks/useNew";
 import { News } from "../components/News";
 
 export const NewsByIdPage = () => {
   const [idNews, setIdNews] = useState([]);
-  const { token, setToken } = useContext(AuthContext);
-  const { news, error, loading } = useNew(idNews);
+  const { news } = useNew(idNews);
 
   const handleForm = (e) => {
     e.preventDefault();

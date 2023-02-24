@@ -1,18 +1,16 @@
 import { NavLink } from "react-router-dom";
-import { useState, useContext } from "react";
-import { getfilterThemeNewsService } from "../services";
-import { AuthContext } from "../context/AuthContext";
+import { useState } from "react";
+import { getFilterThemeNewsService } from "../services";
 import useFilterNews from "../hooks/useFilterNews";
 import { NewsList } from "../components/NewsList";
 
 export const FilterNewsPage = () => {
   const [theme, setTheme] = useState([]);
-  const { token, setToken } = useContext(AuthContext);
-  const { news, error, loading } = useFilterNews(theme);
+  const { news } = useFilterNews(theme);
 
   const handleForm = (e) => {
     e.preventDefault();
-    getfilterThemeNewsService(theme);
+    getFilterThemeNewsService(theme);
   };
 
   return (

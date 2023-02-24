@@ -1,16 +1,19 @@
-import { useEffect, useState } from "react";
-import { getfilterThemeNewsService } from "../services";
+import { useEffect, useState, useContext } from "react";
+import { getFilterThemeNewsService } from "../services";
+import { AuthContext } from "../context/AuthContext";
 
 const useFilterNews = (theme) => {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+  const { token } = useContext(AuthContext);
+
   useEffect(() => {
     const loadNews = async () => {
       try {
         setLoading(true);
-        const data = await getfilterThemeNewsService(theme);
+        const data = await getFilterThemeNewsService(theme, token);
 
         setNews(data);
       } catch (error) {
@@ -21,7 +24,7 @@ const useFilterNews = (theme) => {
     };
 
     loadNews();
-  }, [theme]);
+  }, [theme, token]);
 
   const addNews = (data) => {
     setNews([data, ...news]);

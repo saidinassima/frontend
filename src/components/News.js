@@ -1,16 +1,22 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useState, useRef } from "react";
 import { deleteNewsService, disLikeService } from "../services";
-import { LikeService } from "../services";
-import { AnadirPhotoService } from "../services";
+import { likeService } from "../services";
+import { addPhotoService } from "../services";
 import { AuthContext } from "../context/AuthContext";
-import useCounter from "../hooks/useCounter";
 
-export const News = ({ news }) => {
-  const navigate = useNavigate();
-  const { token, user } = useContext(AuthContext);
-  const [error, setError] = useState("");
+export const News = ({
+  news,
+  addLike,
+  addDislike,
+  removeLike,
+  removeDislike,
+  addNewPhoto,
+}) => {
+  const { token } = useContext(AuthContext);
+  const [setError] = useState("");
   const [photo, setPhoto] = useState(null);
+
+  const photoInputRef = useRef();
 
   const deleteNews = async (id) => {
     try {
@@ -20,17 +26,28 @@ export const News = ({ news }) => {
     }
   };
 
-  const AnadirPhoto = async (id) => {
+  const addPhoto = async (id) => {
     try {
-      await AnadirPhotoService({ id, photo, token });
+      const data = new FormData();
+      data.set("photo", photo);
+
+      const { photo: newPhoto } = await addPhotoService({ id, data, token });
+      setPhoto(null);
+      photoInputRef.current.value = "";
+      addNewPhoto(id, newPhoto);
     } catch (error) {
       setError(error.message);
     }
   };
 
-  const Like = async (id) => {
+  const like = async (id) => {
     try {
-      await LikeService({ id, token });
+      const { liked } = await likeService({ id, token });
+      if (liked) {
+        addLike(id);
+        return;
+      }
+      removeLike(id);
     } catch (error) {
       setError(error.message);
     }
@@ -38,7 +55,13 @@ export const News = ({ news }) => {
 
   const disLike = async (id) => {
     try {
-      await disLikeService({ id, token });
+      const { unliked } = await disLikeService({ id, token });
+
+      if (unliked) {
+        addDislike(id);
+        return;
+      }
+      removeDislike(id);
     } catch (error) {
       setError(error.message);
     }
@@ -51,7 +74,7 @@ export const News = ({ news }) => {
           <figure>
             {news.photo ? (
               <img
-                src={`${process.env.REACT_APP_BACKEND}/static/photos/${news.photo}`}
+                src={`${process.env.REACT_APP_BACKEND}/photos/${news.photo}`}
                 alt={news.photo}
               />
             ) : (
@@ -65,14 +88,17 @@ export const News = ({ news }) => {
           <p>Theme: {news.theme}</p>
           <p>User: {news.idUser}</p>
           <p>Likes: {news.likes}</p>
+          <p>unLikes: {news.dislikes}</p>
           <button
+            className={news.loggedUserLiked ? "liked" : ""}
             onClick={() => {
-              Like(news.id);
+              like(news.id);
             }}
           >
             👍
           </button>
           <button
+            className={news.loggedUserDisliked ? "disliked" : ""}
             onClick={() => {
               disLike(news.id);
             }}
@@ -93,13 +119,13 @@ export const News = ({ news }) => {
                 type="file"
                 name="photo"
                 id="photo"
+                ref={photoInputRef}
                 accept={"photo/*"}
                 onChange={(e) => setPhoto(e.target.files[0])}
               />{" "}
               <button
                 onClick={() => {
-                  if (window.confirm("Are you sure?"))
-                    AnadirPhoto(news.id, photo, token);
+                  if (window.confirm("Are you sure?")) addPhoto(news.id);
                 }}
               >
                 upload

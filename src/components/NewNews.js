@@ -4,7 +4,7 @@ import { sendNewsService } from "../services";
 
 export const NewNews = ({ addNews }) => {
   const { token } = useContext(AuthContext);
-  const [photo, setPhoto] = useState(null);
+  const [setPhoto] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 

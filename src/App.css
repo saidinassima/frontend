@@ -126,3 +126,8 @@ button {
   color: var(--bright);
   border: none;
 }
+
+.liked,
+.disliked {
+  background-color: purple;
+}
