@@ -13,6 +13,7 @@ import { LoginPage } from "./pages/LoginPage";
 import { FilterNewsPage } from "./pages/FilterNewsPage";
 import { Footer } from "./components/Footer";
 import { RegistedPage } from "./pages/RegistedPage";
+import { DeleteUserPage } from "./pages/DeleteUserPage";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/user/:id" element={<UserPage />} />
         <Route path="/UserNews" element={<NewsByIdPage />} />
         <Route path="/FilterNews" element={<FilterNewsPage />} />
+        <Route path="/delUser" element={<DeleteUserPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />

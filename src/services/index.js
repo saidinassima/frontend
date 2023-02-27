@@ -211,3 +211,23 @@ export const disLikeService = async ({ id, token }) => {
 
   return json.data;
 };
+
+export const deleteUserService = async ({ password, token }) => {
+  console.log("password", password);
+  const response = await fetch(`${process.env.REACT_APP_BACKEND}/user`, {
+    method: "DELETE",
+    body: JSON.stringify({ password }),
+    headers: {
+      Authorization: token,
+      "Content-Type": "application/json",
+    },
+  });
+
+  const json = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.message);
+  }
+
+  return json.data;
+};

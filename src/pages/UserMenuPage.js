@@ -11,6 +11,9 @@ export const UserMenuPage = () => {
         <li>
           <Link to={"/register"}>Register</Link>
         </li>
+        <li>
+          <Link to={"/delUser"}>Delete User</Link>
+        </li>
       </ul>
     </section>
   );

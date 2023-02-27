@@ -2,11 +2,10 @@ import { useContext, useState } from "react";
 import { logInUserService } from "../services";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import { useLocalStorage } from "../hooks/useLocalStorage";
 
 export const LoginPage = () => {
   const navigate = useNavigate();
-  const { token, setToken } = useContext(AuthContext);
+  const { setToken } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -24,8 +23,6 @@ export const LoginPage = () => {
       setError(error.message);
     }
   };
-
-  useLocalStorage(token);
 
   return (
     <section>
