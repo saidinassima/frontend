@@ -9,15 +9,18 @@ export const RegisterPage = () => {
   const [pass, setPass] = useState("");
   const [username, setUsername] = useState("");
   const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleForm = async (e) => {
     e.preventDefault();
 
     try {
       await registerUserService({ username, email, password: pass });
+      setMessage("Has registrado correctamente el usuario");
       navigate("/login");
     } catch (error) {
       setError(error.message);
+      setMessage("");
     }
   };
   return (
@@ -59,6 +62,7 @@ export const RegisterPage = () => {
 
         <button>Register</button>
         {error ? <p>{error}</p> : null}
+        <p>{message}</p>
       </form>
     </section>
   );

@@ -14,6 +14,8 @@ import { FilterNewsPage } from "./pages/FilterNewsPage";
 import { Footer } from "./components/Footer";
 import { RegistedPage } from "./pages/RegistedPage";
 import { DeleteUserPage } from "./pages/DeleteUserPage";
+import { EditEmailUserNameUserPage } from "./pages/EditEmailUserNameUserPage";
+import { EditNewPage } from "./pages/EditNewPage";
 
 function App() {
   return (
@@ -32,6 +34,8 @@ function App() {
         <Route path="/UserNews" element={<NewsByIdPage />} />
         <Route path="/FilterNews" element={<FilterNewsPage />} />
         <Route path="/delUser" element={<DeleteUserPage />} />
+        <Route path="/EditEmUsNam" element={<EditEmailUserNameUserPage />} />
+        <Route path="/EditNew" element={<EditNewPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />

@@ -9,14 +9,14 @@ import { HomePage } from "./HomePage";
 export const RegistedPage = () => {
   const { newNews } = useNews();
   const navigate = useNavigate();
-  const { token, setToken } = useContext(AuthContext);
+  const { token, user, setToken } = useContext(AuthContext);
 
   if (!token) {
     navigate("/");
   }
   return (
-    <main>
-      <h2> bienvenida estas logeado </h2>
+    <section>
+      <h2>{`bienvenid@ ${user}`}</h2>
       <NewNews NewNews={newNews} />
       <HomePage />
 
@@ -25,6 +25,6 @@ export const RegistedPage = () => {
           <button onClick={() => setToken("")}>Logout</button>
         </fieldset>
       </form>
-    </main>
+    </section>
   );
 };

@@ -2,9 +2,8 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { sendNewsService } from "../services";
 
-export const NewNews = ({ addNews }) => {
+export const NewNews = () => {
   const { token } = useContext(AuthContext);
-  const [setPhoto] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -14,12 +13,9 @@ export const NewNews = ({ addNews }) => {
     try {
       setLoading(true);
       const data = new FormData(e.target);
-      const news = await sendNewsService({ data, token });
-
-      addNews(news);
+      await sendNewsService({ data, token });
 
       e.target.reset();
-      setPhoto(null);
     } catch (error) {
       setError(error.message);
     } finally {

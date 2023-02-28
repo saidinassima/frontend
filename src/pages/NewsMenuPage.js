@@ -11,6 +11,9 @@ export const NewsMenuPage = () => {
         <li>
           <Link to={"/FilterNews"}>FilterNews</Link>
         </li>
+        <li>
+          <Link to={"/EditNew"}>EditNews</Link>
+        </li>
       </ul>
     </section>
   );

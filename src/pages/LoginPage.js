@@ -1,26 +1,32 @@
 import { useContext, useState } from "react";
-import { logInUserService } from "../services";
+import { listUserNameService, logInUserService } from "../services";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 export const LoginPage = () => {
   const navigate = useNavigate();
-  const { setToken } = useContext(AuthContext);
+  const { setToken, setUser } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleForm = async (e) => {
     e.preventDefault();
 
     try {
       const loginToken = await logInUserService({ email, password });
+      const { userName } = await listUserNameService(loginToken);
 
       setToken(loginToken);
+      setUser(userName[0].username);
+
+      setMessage("Te has logeado correctamente");
 
       navigate("/registed");
     } catch (error) {
       setError(error.message);
+      setMessage("");
     }
   };
 
@@ -53,6 +59,7 @@ export const LoginPage = () => {
 
         <button>Login</button>
         {error ? <p>{error}</p> : null}
+        <p>{message}</p>
       </form>
     </section>
   );

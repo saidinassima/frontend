@@ -213,7 +213,6 @@ export const disLikeService = async ({ id, token }) => {
 };
 
 export const deleteUserService = async ({ password, token }) => {
-  console.log("password", password);
   const response = await fetch(`${process.env.REACT_APP_BACKEND}/user`, {
     method: "DELETE",
     body: JSON.stringify({ password }),
@@ -222,6 +221,78 @@ export const deleteUserService = async ({ password, token }) => {
       "Content-Type": "application/json",
     },
   });
+
+  const json = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.message);
+  }
+
+  return json.data;
+};
+
+export const editUserEmailUserNameService = async ({
+  newEmail,
+  newUsername,
+  token,
+}) => {
+  const response = await fetch(`${process.env.REACT_APP_BACKEND}/user`, {
+    method: "PUT",
+    body: JSON.stringify({ newEmail, newUsername }),
+    headers: {
+      Authorization: token,
+      "Content-Type": "application/json",
+    },
+  });
+
+  const json = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.message);
+  }
+
+  return json.data;
+};
+
+export const editNewService = async ({
+  idNew,
+  title,
+  leadIn,
+  text,
+  theme,
+  token,
+}) => {
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND}/News/${idNew}`,
+    {
+      method: "PUT",
+      body: JSON.stringify({ title, leadIn, text, theme }),
+      headers: {
+        Authorization: token,
+        "Content-Type": "application/json",
+      },
+    }
+  );
+
+  const json = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.message);
+  }
+
+  return json.data;
+};
+
+export const listUserNameService = async (token) => {
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND}/user/username`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: token,
+      },
+    }
+  );
 
   const json = await response.json();
 
