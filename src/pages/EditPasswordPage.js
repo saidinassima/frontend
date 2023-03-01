@@ -1,6 +1,5 @@
 import { useContext, useState } from "react";
-import { EditPasswordService } from "../services";
-import { useLocalStorage } from "../hooks/useLocalStorage";
+import { editPasswordService } from "../services";
 
 import { AuthContext } from "../context/AuthContext";
 
@@ -15,21 +14,19 @@ export const EditPasswordPage = () => {
   const handleForm = async (e) => {
     e.preventDefault();
     try {
-      const PassToken = await EditPasswordService({
+      const PassToken = await editPasswordService({
         email,
         newPass,
         confirmNewPass,
         token,
       });
       setToken(PassToken);
-      setMessage("Se ha Cambiando correctamente ");
+      setMessage("Se ha Cambiando el password correctamente ");
     } catch (error) {
       setError(error.message);
       setMessage("");
     }
   };
-
-  useLocalStorage(token);
 
   return (
     <section>

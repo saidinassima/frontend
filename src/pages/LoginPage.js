@@ -20,6 +20,7 @@ export const LoginPage = () => {
 
       setToken(loginToken);
       setUser(userName[0].username);
+      localStorage.setItem("user", userName[0].username);
 
       setMessage("Te has logeado correctamente");
 

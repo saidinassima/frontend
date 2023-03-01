@@ -302,7 +302,7 @@ export const listUserNameService = async (token) => {
 
   return json.data;
 };
-export const EditPasswordService = async ({
+export const editPasswordService = async ({
   email,
   newPass,
   confirmNewPass,

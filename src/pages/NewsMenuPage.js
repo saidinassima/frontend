@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 export const NewsMenuPage = () => {
-  return (
+  const { user } = useContext(AuthContext);
+
+  return user ? (
     <section>
       <h2>News Menu:</h2>
       <ul>
@@ -13,6 +17,15 @@ export const NewsMenuPage = () => {
         </li>
         <li>
           <Link to={"/EditNew"}>EditNews</Link>
+        </li>
+      </ul>
+    </section>
+  ) : (
+    <section>
+      <h2>News Menu:</h2>
+      <ul>
+        <li>
+          <Link to={"/UserNews"}>UserNews</Link>
         </li>
       </ul>
     </section>
