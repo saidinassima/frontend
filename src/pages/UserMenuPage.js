@@ -17,6 +17,9 @@ export const UserMenuPage = () => {
         <li>
           <Link to={"/EditEmUsNam"}>Edit Email and UserName</Link>
         </li>
+        <li>
+          <Link to={"/user/password"}>Edit Contraseñea </Link>
+        </li>
       </ul>
     </section>
   );
