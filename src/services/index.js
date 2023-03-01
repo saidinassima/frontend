@@ -302,3 +302,27 @@ export const listUserNameService = async (token) => {
 
   return json.data;
 };
+export const EditPasswordService = async ({
+  email,
+  newPass,
+  confirmNewPass,
+  token,
+}) => {
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND}/user/password`,
+    {
+      method: "PUT",
+      body: JSON.stringify({ email, newPass, confirmNewPass }),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+    }
+  );
+
+  const json = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.message);
+  }
+};
