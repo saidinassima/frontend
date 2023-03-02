@@ -17,7 +17,7 @@ export const HomePage = () => {
       <h1>Latest News</h1>
       <NewsList
         newss={news}
-        removeNows={removeNews}
+        removeNews={removeNews}
         addLike={addLike}
         addDislike={addDislike}
         removeLike={removeLike}

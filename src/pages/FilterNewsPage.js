@@ -7,6 +7,7 @@ import { NewsList } from "../components/NewsList";
 export const FilterNewsPage = () => {
   const [theme, setTheme] = useState([]);
   const { news } = useFilterNews(theme);
+  const [visible, setVisible] = useState(false);
 
   const handleForm = (e) => {
     e.preventDefault();
@@ -27,12 +28,16 @@ export const FilterNewsPage = () => {
           />
         </fieldset>
         <fieldset>
-          <button type="submit">Mostrar</button>
+          <button onClick={() => setVisible(true)}>Mostrar</button>
         </fieldset>
       </form>
       <section>
         <h1>news</h1>
-        <NewsList newss={news} />
+        {visible ? (
+          <NewsList newss={news} />
+        ) : (
+          `Pulsa el boton para ver las Noticias`
+        )}
       </section>
       <section>
         ir a la HomePage: <NavLink to={"/"}>HomePage</NavLink>

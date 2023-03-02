@@ -32,6 +32,7 @@ export const getAllNewsService = async (token) => {
 
   return json.data;
 };
+
 export const getSingleNewsService = async (id) => {
   const response = await fetch(`${process.env.REACT_APP_BACKEND}/news/${id}`);
 
@@ -325,4 +326,20 @@ export const editPasswordService = async ({
   if (!response.ok) {
     throw new Error(json.message);
   }
+};
+
+export const getNewByIdUserService = async (token) => {
+  const response = await fetch(`${process.env.REACT_APP_BACKEND}/profile`, {
+    method: "GET",
+    headers: {
+      Authorization: token,
+    },
+  });
+  const json = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.message);
+  }
+
+  return json.user.news;
 };

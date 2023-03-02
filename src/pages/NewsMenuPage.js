@@ -10,13 +10,16 @@ export const NewsMenuPage = () => {
       <h2>News Menu:</h2>
       <ul>
         <li>
-          <Link to={"/UserNews"}>UserNews</Link>
+          <Link to={"/UserNews"}>News By IdNew</Link>
         </li>
         <li>
           <Link to={"/FilterNews"}>FilterNews</Link>
         </li>
         <li>
           <Link to={"/EditNew"}>EditNews</Link>
+        </li>
+        <li>
+          <Link to={"/profile"}>News By IdUser</Link>
         </li>
       </ul>
     </section>

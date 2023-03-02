@@ -17,6 +17,7 @@ import { DeleteUserPage } from "./pages/DeleteUserPage";
 import { EditEmailUserNameUserPage } from "./pages/EditEmailUserNameUserPage";
 import { EditNewPage } from "./pages/EditNewPage";
 import { EditPasswordPage } from "./pages/EditPasswordPage";
+import { NewsByIdUserPage } from "./pages/NewsByIdUserPage";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
         <Route path="/EditEmUsNam" element={<EditEmailUserNameUserPage />} />
         <Route path="/EditNew" element={<EditNewPage />} />
         <Route path="/user/password" element={<EditPasswordPage />} />
+        <Route path="/profile" element={<NewsByIdUserPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />

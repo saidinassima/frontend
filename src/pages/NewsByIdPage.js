@@ -1,16 +1,15 @@
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
-import { getSingleNewsService } from "../services";
 import useNew from "../hooks/useNew";
 import { News } from "../components/News";
 
 export const NewsByIdPage = () => {
   const [idNews, setIdNews] = useState([]);
   const { news } = useNew(idNews);
+  const [visible, setVisible] = useState(false);
 
   const handleForm = (e) => {
     e.preventDefault();
-    getSingleNewsService(idNews);
   };
 
   return (
@@ -27,12 +26,16 @@ export const NewsByIdPage = () => {
           />
         </fieldset>
         <fieldset>
-          <button type="submit">Mostrar</button>
+          <button onClick={() => setVisible(true)}>Mostrar</button>
         </fieldset>
       </form>
       <section>
-        <h1>news</h1>
-        <News news={news} />
+        <h1>News by idNew:</h1>
+        {visible ? (
+          <News news={news} />
+        ) : (
+          `Pulsa el boton para ver las Noticias`
+        )}
       </section>
       <section>
         ir a la HomePage: <NavLink to={"/"}>HomePage</NavLink>
