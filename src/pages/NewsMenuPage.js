@@ -6,11 +6,16 @@ export const NewsMenuPage = () => {
   const { user } = useContext(AuthContext);
 
   return user ? (
-    <section>
-      <h2>News Menu:</h2>
+    <nav>
       <ul>
         <li>
-          <Link to={"/UserNews"}>News By IdNew</Link>
+          <h2>News Menu:</h2>
+        </li>
+        <li>
+          <Link to={"/"}>ListNews</Link>
+        </li>
+        <li>
+          <Link to={"/addNews"}>AddNewNews</Link>
         </li>
         <li>
           <Link to={"/FilterNews"}>FilterNews</Link>
@@ -19,18 +24,26 @@ export const NewsMenuPage = () => {
           <Link to={"/EditNew"}>EditNews</Link>
         </li>
         <li>
+          <Link to={"/UserNews"}>News By IdNew</Link>
+        </li>
+        <li>
           <Link to={"/profile"}>News By IdUser</Link>
         </li>
       </ul>
-    </section>
+    </nav>
   ) : (
-    <section>
-      <h2>News Menu:</h2>
+    <nav>
       <ul>
         <li>
-          <Link to={"/UserNews"}>UserNews</Link>
+          <h2> News Menu:</h2>
+        </li>
+        <li>
+          <Link to={"/"}>ListNews</Link>
+        </li>
+        <li>
+          <Link to={"/UserNews"}>News By IdNew</Link>
         </li>
       </ul>
-    </section>
+    </nav>
   );
 };

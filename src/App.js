@@ -18,14 +18,22 @@ import { EditEmailUserNameUserPage } from "./pages/EditEmailUserNameUserPage";
 import { EditNewPage } from "./pages/EditNewPage";
 import { EditPasswordPage } from "./pages/EditPasswordPage";
 import { NewsByIdUserPage } from "./pages/NewsByIdUserPage";
+import { useContext } from "react";
+import { AuthContext } from "./context/AuthContext";
+import { AddNewNews } from "./pages/AddNewNews";
 
 function App() {
+  const { token } = useContext(AuthContext);
   return (
     <main className="app">
       <Header />
 
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        {token ? (
+          <Route path="/" element={<RegistedPage />} />
+        ) : (
+          <Route path="/" element={<HomePage />} />
+        )}
         <Route path="/NewsMenu" element={<NewsMenuPage />} />
         <Route path="/UserMenu" element={<UserMenuPage />} />
         <Route path="/register" element={<RegisterPage />} />
@@ -38,6 +46,7 @@ function App() {
         <Route path="/delUser" element={<DeleteUserPage />} />
         <Route path="/EditEmUsNam" element={<EditEmailUserNameUserPage />} />
         <Route path="/EditNew" element={<EditNewPage />} />
+        <Route path="/addNews" element={<AddNewNews />} />
         <Route path="/user/password" element={<EditPasswordPage />} />
         <Route path="/profile" element={<NewsByIdUserPage />} />
         <Route path="*" element={<NotFoundPage />} />

@@ -4,10 +4,20 @@ import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import useNews from "../hooks/useNews";
 import { NewNews } from "../components/NewNews";
-import { HomePage } from "./HomePage";
+import { NewsList } from "../components/NewsList";
 
 export const RegistedPage = () => {
-  const { newNews } = useNews();
+  const {
+    news,
+    removeNews,
+    addLike,
+    addDislike,
+    removeLike,
+    removeDislike,
+    addNewPhoto,
+    newNews,
+  } = useNews();
+
   const navigate = useNavigate();
   const { token, user, setToken } = useContext(AuthContext);
 
@@ -17,14 +27,25 @@ export const RegistedPage = () => {
   return (
     <section>
       <h2>{`bienvenid@ ${user}`}</h2>
-      <NewNews NewNews={newNews} />
-      <HomePage />
-
-      <form id="BotonBar">
+      <form className="RegisterSec">
         <fieldset>
-          <button onClick={() => setToken("")}>Logout</button>
+          <button className="Done" onClick={() => setToken("")}>
+            Logout
+          </button>
         </fieldset>
       </form>
+      <NewNews newNews={newNews} />
+      <h1>Latest News</h1>
+
+      <NewsList
+        newss={news}
+        removeNews={removeNews}
+        addLike={addLike}
+        addDislike={addDislike}
+        removeLike={removeLike}
+        removeDislike={removeDislike}
+        addNewPhoto={addNewPhoto}
+      />
     </section>
   );
 };

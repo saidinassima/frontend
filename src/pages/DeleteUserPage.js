@@ -36,7 +36,7 @@ export const DeleteUserPage = () => {
           />
         </fieldset>
 
-        <button>Borrar</button>
+        <button className="Done">Borrar</button>
         {error ? <p>{error}</p> : null}
         <p>{message}</p>
       </form>

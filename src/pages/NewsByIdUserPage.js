@@ -19,35 +19,32 @@ export const NewsByIdUserPage = () => {
     e.preventDefault();
   };
 
-  //console.log(token);
   return (
-    <main>
-      <section>
-        <h1>Estas son vuestras Noticias: </h1>
-        <form onSubmit={handleForm}>
-          <fieldset>
-            <button onClick={() => setVisible(true)}>Mostrar</button>
-          </fieldset>
-        </form>
-      </section>
-      <section>
-        {visible ? (
-          <NewsList
-            newss={news}
-            removeNews={removeNews}
-            addLike={addLike}
-            addDislike={addDislike}
-            removeLike={removeLike}
-            removeDislike={removeDislike}
-            addNewPhoto={addNewPhoto}
-          />
-        ) : (
-          `Pulsa el boton para ver las Noticias`
-        )}
-      </section>
-      <section>
-        ir a la HomePage: <NavLink to={"/"}>HomePage</NavLink>
-      </section>
-    </main>
+    <section>
+      <h1>Estas son vuestras Noticias: </h1>
+      <form onSubmit={handleForm}>
+        <fieldset>
+          <button className="Done" onClick={() => setVisible(true)}>
+            Mostrar
+          </button>
+        </fieldset>
+      </form>
+      {visible ? (
+        <NewsList
+          newss={news}
+          removeNews={removeNews}
+          addLike={addLike}
+          addDislike={addDislike}
+          removeLike={removeLike}
+          removeDislike={removeDislike}
+          addNewPhoto={addNewPhoto}
+        />
+      ) : (
+        `Pulsa el boton para ver las Noticias`
+      )}
+      <nav>
+        <NavLink to={"/"}>HomePage</NavLink>
+      </nav>
+    </section>
   );
 };

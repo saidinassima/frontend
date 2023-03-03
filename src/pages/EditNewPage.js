@@ -24,7 +24,7 @@ export const EditNewPage = () => {
     }
   };
   return (
-    <>
+    <section>
       <form className="edit-news" onSubmit={handleForm}>
         <fieldset>
           <label htmlFor="idNew">Pon el id de la Noticia a modificar</label>
@@ -86,10 +86,10 @@ export const EditNewPage = () => {
           />
         </fieldset>
 
-        <button>Edit</button>
+        <button className="Done">Edit</button>
         {error ? <p>{error}</p> : null}
         <p>{message}</p>
       </form>
-    </>
+    </section>
   );
 };

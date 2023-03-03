@@ -13,7 +13,7 @@ export const NewsByIdPage = () => {
   };
 
   return (
-    <main>
+    <section>
       <h2>Lista mensajes por id de mensaje</h2>
       <form onSubmit={handleForm}>
         <fieldset>
@@ -26,7 +26,9 @@ export const NewsByIdPage = () => {
           />
         </fieldset>
         <fieldset>
-          <button onClick={() => setVisible(true)}>Mostrar</button>
+          <button className="Done" onClick={() => setVisible(true)}>
+            Mostrar
+          </button>
         </fieldset>
       </form>
       <section>
@@ -37,9 +39,9 @@ export const NewsByIdPage = () => {
           `Pulsa el boton para ver las Noticias`
         )}
       </section>
-      <section>
-        ir a la HomePage: <NavLink to={"/"}>HomePage</NavLink>
-      </section>
-    </main>
+      <nav>
+        <NavLink to={"/"}>HomePage</NavLink>
+      </nav>
+    </section>
   );
 };

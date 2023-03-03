@@ -60,7 +60,7 @@ export const RegisterPage = () => {
           />
         </fieldset>
 
-        <button>Register</button>
+        <button className="Done">Register</button>
         {error ? <p>{error}</p> : null}
         <p>{message}</p>
       </form>

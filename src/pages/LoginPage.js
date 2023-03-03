@@ -58,7 +58,7 @@ export const LoginPage = () => {
           />
         </fieldset>
 
-        <button>Login</button>
+        <button className="Done">Login</button>
         {error ? <p>{error}</p> : null}
         <p>{message}</p>
       </form>

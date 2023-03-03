@@ -50,7 +50,7 @@ export const EditEmailUserNameUserPage = () => {
           />
         </fieldset>
 
-        <button>Edit</button>
+        <button className="Done">Edit</button>
         {error ? <p>{error}</p> : null}
         <p>{message}</p>
       </form>

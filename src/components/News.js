@@ -1,4 +1,5 @@
-import { Link, useNavigate } from "react-router-dom";
+import "../App.css";
+import { useNavigate } from "react-router-dom";
 import { useContext, useState, useRef } from "react";
 import { deleteNewsService, disLikeService } from "../services";
 import { likeService } from "../services";
@@ -15,7 +16,7 @@ export const News = ({
   removeNews,
 }) => {
   const { token } = useContext(AuthContext);
-  const [setError] = useState("");
+  const [error, setError] = useState("");
   const [photo, setPhoto] = useState(null);
   const navigate = useNavigate();
 
@@ -77,10 +78,10 @@ export const News = ({
   };
 
   return (
-    <ul>
+    <ul className="news-list">
       <li>
         <article className="news">
-          <figure>
+          <section className="photoNew">
             {news.photo ? (
               <img
                 src={`${process.env.REACT_APP_BACKEND}/photos/${news.photo}`}
@@ -89,7 +90,7 @@ export const News = ({
             ) : (
               "No hay foto"
             )}
-          </figure>
+          </section>
           <p>Id: {news.id}</p>
           <p>Title: {news.title}</p>
           <p>leadIn: {news.leadIn}</p>
@@ -99,58 +100,66 @@ export const News = ({
           <p>Likes: {news.likes}</p>
           <p>unLikes: {news.dislikes}</p>
 
-          <button
-            className={news.loggedUserLiked ? "liked" : ""}
-            onClick={() => {
-              like(news.id);
-            }}
-          >
-            👍
-          </button>
-          <button
-            className={news.loggedUserDisliked ? "disliked" : ""}
-            onClick={() => {
-              disLike(news.id);
-            }}
-          >
-            👎
-          </button>
-          {
-            <section>
-              <button
-                onClick={() => {
-                  if (window.confirm("Are you sure?")) deleteNews(news.id);
-                }}
-              >
-                Delete news
-              </button>
-              <label htmlFor="photo">añadir photo</label>
-              <input
-                type="file"
-                name="photo"
-                id="photo"
-                ref={photoInputRef}
-                accept={"photo/*"}
-                onChange={(e) => setPhoto(e.target.files[0])}
-              />{" "}
-              <button
-                onClick={() => {
-                  if (window.confirm("Are you sure?")) addPhoto(news.id);
-                }}
-              >
-                upload
-              </button>
-              {photo ? (
-                <figure>
-                  <img
-                    src={URL.createObjectURL(photo)}
-                    style={{ width: "100px" }}
-                    alt="Preview"
-                  />
-                </figure>
-              ) : null}
-            </section>
-          }
+          {token ? (
+            <>
+              <section className="photoBar">
+                <label htmlFor="photo">añadir photo</label>
+                <input
+                  type="file"
+                  name="photo"
+                  id="photo"
+                  ref={photoInputRef}
+                  accept={"photo/*"}
+                  onChange={(e) => setPhoto(e.target.files[0])}
+                />{" "}
+                <button
+                  className="photoButton"
+                  onClick={() => {
+                    if (window.confirm("Are you sure?")) addPhoto(news.id);
+                  }}
+                >
+                  upload
+                </button>
+                {photo ? (
+                  <figure>
+                    <img
+                      src={URL.createObjectURL(photo)}
+                      style={{ width: "100px" }}
+                      alt="Preview"
+                    />
+                  </figure>
+                ) : null}
+              </section>
+              <span>
+                <button
+                  className={news.loggedUserLiked ? "liked" : ""}
+                  onClick={() => {
+                    like(news.id);
+                  }}
+                >
+                  👍
+                </button>
+                <button
+                  className={news.loggedUserDisliked ? "disliked" : ""}
+                  onClick={() => {
+                    disLike(news.id);
+                  }}
+                >
+                  👎
+                </button>
+
+                <button
+                  className="DelButton"
+                  onClick={() => {
+                    if (window.confirm("Are you sure?")) deleteNews(news.id);
+                  }}
+                >
+                  Delete news
+                </button>
+              </span>
+              {error ? <p className="MenError">{error}</p> : null}
+            </>
+          ) : null}
         </article>
       </li>
     </ul>

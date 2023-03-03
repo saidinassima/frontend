@@ -19,9 +19,11 @@ export const getFilterThemeNewsService = async (theme, token) => {
 
 export const getAllNewsService = async (token) => {
   const response = await fetch(`${process.env.REACT_APP_BACKEND}/listNews`, {
-    headers: {
-      Authorization: token,
-    },
+    headers: token
+      ? {
+          Authorization: token,
+        }
+      : {},
   });
 
   const json = await response.json();

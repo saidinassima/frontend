@@ -6,14 +6,16 @@ export const UserMenuPage = () => {
   const { user } = useContext(AuthContext);
 
   return user ? (
-    <section>
-      <h2>User Menu:</h2>
+    <nav>
       <ul>
         <li>
-          <Link to={"/login"}>Login</Link>
+          <h2>User Menu:</h2>
         </li>
         <li>
           <Link to={"/register"}>Register</Link>
+        </li>
+        <li>
+          <Link to={"/login"}>Login</Link>
         </li>
         <li>
           <Link to={"/delUser"}>Delete User</Link>
@@ -22,21 +24,23 @@ export const UserMenuPage = () => {
           <Link to={"/EditEmUsNam"}>Edit Email and UserName</Link>
         </li>
         <li>
-          <Link to={"/user/password"}>Edit Contraseña </Link>
+          <Link to={"/user/password"}>Edit Password</Link>
         </li>
       </ul>
-    </section>
+    </nav>
   ) : (
-    <section>
-      <h2>User Menu:</h2>
+    <nav>
       <ul>
         <li>
-          <Link to={"/login"}>Login</Link>
+          <h2>User Menu:</h2>
         </li>
         <li>
           <Link to={"/register"}>Register</Link>
         </li>
+        <li>
+          <Link to={"/login"}>Login</Link>
+        </li>
       </ul>
-    </section>
+    </nav>
   );
 };

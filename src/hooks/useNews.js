@@ -26,12 +26,16 @@ const useNews = () => {
     loadNews();
   }, [token]);
 
-  const NewNews = (data) => {
+  const newNews = (data) => {
     setNews([data, ...news]);
   };
 
-  const removeNews = (id) => {
-    setNews(news.filter((news) => news.id !== id));
+  const removeNews = async (id) => {
+    try {
+      setNews(news.filter((news) => news.id !== id));
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
   const addLike = (id) => {
@@ -80,7 +84,7 @@ const useNews = () => {
     news,
     error,
     loading,
-    NewNews,
+    newNews,
     removeNews,
     addLike,
     addDislike,

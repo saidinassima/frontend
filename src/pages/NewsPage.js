@@ -6,7 +6,7 @@ import { Loading } from "../components/Loading";
 
 export const NewsPage = () => {
   const { id } = useParams();
-  const { news, error, loading } = useNews(id);
+  const { news, error, loading, removeNews } = useNews(id);
 
   if (loading) return <Loading />;
   if (error) return <ErrorMessage message={error} />;
@@ -14,7 +14,7 @@ export const NewsPage = () => {
   return (
     <section>
       <h1>news</h1>
-      <News news={news} />
+      <News news={news} removeNews={removeNews(id)} />
     </section>
   );
 };

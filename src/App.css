@@ -14,6 +14,11 @@ html {
 a {
   color: var(--action);
   text-decoration: none;
+  margin-top: 2rem;
+}
+
+.titleAddNew {
+  text-align: center;
 }
 
 main.app {
@@ -26,7 +31,7 @@ main.app {
 }
 
 .app header {
-  background-color: #f1f1f1;
+  background-color: black;
   padding: 2rem;
   display: flex;
   justify-content: space-between;
@@ -40,7 +45,9 @@ main.app {
 }
 
 .app footer {
-  background-color: #f1f1f1;
+  background-color: black;
+  text-align: right;
+  color: #d9d9db;
   padding: 2rem;
 }
 
@@ -94,6 +101,12 @@ p.loading {
   padding: 2rem;
 }
 
+form {
+  padding: 1rem;
+  margin-bottom: 2rem;
+  background-color: var(--bg);
+}
+
 form fieldset {
   border: none;
   margin-bottom: 1rem;
@@ -120,14 +133,104 @@ form.new-news {
   background-color: var(--bg);
 }
 
-button {
-  padding: 0.5rem 1rem;
+.liked,
+.disliked {
+  background-color: red;
+}
+
+.Logout {
+  position: absolute;
+  left: 85%;
+  top: 15%;
+}
+
+button.Done {
+  display: block;
   background-color: var(--action);
   color: var(--bright);
+  padding: 0.5rem 1rem;
+  position: relative;
+  align-items: center;
+  margin-left: 38rem;
+  width: 120px;
+  cursor: pointer;
+  border-width: 1px;
+}
+
+span {
+  display: flex;
+  justify-content: flex-end;
+}
+
+ul.news-list li {
+  width: 100%;
+  padding: 10px 10px;
+  background-color: #000;
+  border: 1px solid #000;
+  text-align: center;
+  color: #fff;
+}
+
+article.news {
+  background-color: aquamarine;
+  color: #000;
+}
+
+article.news img {
+  width: 100%;
+  height: 100%;
+}
+
+ul.news-list li p {
+  font-weight: bold;
+}
+
+nav {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid: block;
+  text-align: center;
+}
+
+nav ul {
+  margin: auto;
+}
+
+nav li {
+  list-style: none;
+  width: 120%;
+  padding: 0.5rem;
+  border: 1px solid #000;
+  border-radius: 1rem;
+}
+
+nav h2 {
+  height: 20%;
+}
+
+nav li:first-child {
   border: none;
 }
 
-.liked,
-.disliked {
-  background-color: purple;
+button.DelButton {
+  display: block;
+  background-color: var(--action);
+  color: var(--bright);
+  position: relative;
+  align-items: center;
+  width: 120px;
+  cursor: pointer;
+  border: black solid 1px;
+}
+
+button.photoButton {
+  background-color: var(--action);
+  color: var(--bright);
+  width: 80px;
+  cursor: pointer;
+  border: black solid 1px;
+}
+
+.MenError {
+  color: red;
 }

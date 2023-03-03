@@ -7,7 +7,7 @@ export const AuthContextProviderComponent = ({ children }) => {
   const [user, setUser] = useState(localStorage.getItem("user"));
 
   useEffect(() => {
-    localStorage.setItem("token", token);
+    if (token) localStorage.setItem("token", token);
   }, [token]);
 
   return (

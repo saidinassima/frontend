@@ -66,6 +66,7 @@ export const EditPasswordPage = () => {
         </fieldset>
 
         <button
+          className="Done"
           onClick={() => {
             if (window.confirm("Are you sure?"));
           }}

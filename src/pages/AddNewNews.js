@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { sendNewsService } from "../services";
 
-export const NewNews = ({ newNews }) => {
+export const AddNewNews = () => {
   const { token } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -14,9 +14,7 @@ export const NewNews = ({ newNews }) => {
     try {
       setLoading(true);
       const data = new FormData(e.target);
-      const response = await sendNewsService({ data, token });
-
-      newNews(response);
+      await sendNewsService({ data, token });
 
       e.target.reset();
     } catch (error) {
@@ -26,9 +24,9 @@ export const NewNews = ({ newNews }) => {
     }
   };
   return (
-    <>
-      <h1>Add new news</h1>
-      <form className="new-news" onSubmit={handleForm}>
+    <section>
+      <h1 className="titleAddNew">Add new news</h1>
+      <form className="FormAddNews" onSubmit={handleForm}>
         <fieldset>
           <label htmlFor="title">titulo</label>
           <input type="text" name="title" id="title" required />
@@ -53,6 +51,6 @@ export const NewNews = ({ newNews }) => {
         {error ? <p>{error}</p> : null}
         {loading ? <p>posting news...</p> : null}
       </form>
-    </>
+    </section>
   );
 };
