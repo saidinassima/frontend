@@ -7,6 +7,7 @@ export const NewsList = ({
   removeLike,
   removeDislike,
   addNewPhoto,
+  removeNews,
 }) => {
   return newss.length ? (
     <ul className="news-list">
@@ -20,6 +21,7 @@ export const NewsList = ({
               removeLike={removeLike}
               removeDislike={removeDislike}
               addNewPhoto={addNewPhoto}
+              removeNews={removeNews}
             />
           </li>
         );
