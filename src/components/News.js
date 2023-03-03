@@ -1,3 +1,4 @@
+import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState, useRef } from "react";
 import { deleteNewsService, disLikeService } from "../services";
 import { likeService } from "../services";
@@ -11,16 +12,24 @@ export const News = ({
   removeLike,
   removeDislike,
   addNewPhoto,
+  removeNews,
 }) => {
   const { token } = useContext(AuthContext);
   const [setError] = useState("");
   const [photo, setPhoto] = useState(null);
+  const navigate = useNavigate();
 
   const photoInputRef = useRef();
 
   const deleteNews = async (id) => {
     try {
       await deleteNewsService({ id, token });
+
+      if (removeNews) {
+        removeNews(id);
+      } else {
+        navigate("/");
+      }
     } catch (error) {
       setError(error.message);
     }
@@ -89,6 +98,7 @@ export const News = ({
           <p>User: {news.idUser}</p>
           <p>Likes: {news.likes}</p>
           <p>unLikes: {news.dislikes}</p>
+
           <button
             className={news.loggedUserLiked ? "liked" : ""}
             onClick={() => {
